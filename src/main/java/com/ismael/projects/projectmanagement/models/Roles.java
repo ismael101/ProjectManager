@@ -20,6 +20,10 @@ public class Roles {
         this.name = name;
     }
 
+    public Roles(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
