@@ -24,6 +24,7 @@ public class JwtAuthentication extends UsernamePasswordAuthenticationFilter {
 
     public JwtAuthentication(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
+        setFilterProcessesUrl("api/auth/login");
     }
 
     @Override
@@ -38,7 +39,6 @@ public class JwtAuthentication extends UsernamePasswordAuthenticationFilter {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 loginRequest.getUsername(),
                 loginRequest.getPassword());
-
         // Authenticate user
         Authentication auth = authenticationManager.authenticate(authenticationToken);
 
@@ -48,7 +48,6 @@ public class JwtAuthentication extends UsernamePasswordAuthenticationFilter {
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         MyUserDetails userDetails = (MyUserDetails) authResult.getPrincipal();
-        try{
             Algorithm algorithm = Algorithm.HMAC512(JwtProperties.SECRET.getBytes());
             String token = JWT.create()
                     .withSubject(userDetails.getUsername())
@@ -58,12 +57,5 @@ public class JwtAuthentication extends UsernamePasswordAuthenticationFilter {
                     .sign(algorithm);
             response.addHeader(JwtProperties.HEADER_STRING,
                     JwtProperties.TOKEN_PREFIX + token);
-
-        }catch(JWTCreationException e){
-            throw new IllegalStateException("error creating jwt token");
-        }
-
-
     }
-
 }

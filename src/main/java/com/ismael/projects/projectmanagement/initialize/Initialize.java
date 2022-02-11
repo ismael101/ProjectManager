@@ -7,10 +7,11 @@ import com.ismael.projects.projectmanagement.repositories.RegisterRepository;
 import com.ismael.projects.projectmanagement.repositories.RolesRepository;
 import com.ismael.projects.projectmanagement.repositories.UsersRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.util.Arrays;
 
+@Configuration
 public class Initialize implements CommandLineRunner {
     private UsersRepository usersRepository;
     private RegisterRepository registerRepository;
@@ -38,7 +39,8 @@ public class Initialize implements CommandLineRunner {
     }
 
     public void registerAdmin(){
-        Register register = new Register(email, true, false, false, true, this.rolesRepository.findByName("ADMIN"));
+        this.rolesRepository.findByName("ADMIN").get();
+        Register register = new Register(email, true, true, true, true, this.rolesRepository.findByName("ADMIN").get());
         this.registerRepository.save(register);
     }
 

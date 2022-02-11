@@ -13,8 +13,7 @@ public class Users {
     @OneToOne
     Register register;
 
-    public Users(Long id) {
-        this.id = id;
+    public Users() {
     }
 
     public Users(String username, String password, Register register) {
@@ -61,6 +60,8 @@ public class Users {
     public void setRegister(Register register) {
         this.register = register;
     }
+
+    /*
     public List<String> getPermissions(){
         List<String> permissions = null;
         if (this.register.getRole().getName() == "ADMIN") {
@@ -72,4 +73,6 @@ public class Users {
         }
         return permissions;
     }
+
+     */
 }

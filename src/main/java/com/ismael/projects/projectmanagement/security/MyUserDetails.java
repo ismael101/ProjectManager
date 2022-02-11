@@ -19,12 +19,15 @@ public class MyUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        GrantedAuthority role = new SimpleGrantedAuthority("ROLE_" + this.user.getRegister().getRole());
+        GrantedAuthority role = new SimpleGrantedAuthority("ROLE_" + this.user.getRegister().getRole().getName());
         authorities.add(role);
-        this.user.getRegister().getPermissions().forEach(p -> {
+        /*
+        this.user.getPermissions().forEach(p -> {
             GrantedAuthority permissions = new SimpleGrantedAuthority(p);
             authorities.add(permissions);
         });
+
+         */
         return authorities;
     }
 
@@ -40,17 +43,17 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return user.getRegister().getAccountExpired();
+        return user.getRegister().getAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return user.getRegister().getAccountLocked();
+       return user.getRegister().getAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return user.getRegister().getCredentialsExpired();
+        return user.getRegister().getCredentialsNonExpired();
     }
 
     @Override

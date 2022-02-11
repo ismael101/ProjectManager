@@ -9,9 +9,9 @@ public class Register {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String email;
-    private Boolean accountLocked;
-    private Boolean credentialsExpired;
-    private Boolean accountExpired;
+    private Boolean accountNonLocked;
+    private Boolean credentialsNonExpired;
+    private Boolean accountNonExpired;
     private Boolean accountEnabled;
     @ManyToOne
     private Teams team;
@@ -21,36 +21,44 @@ public class Register {
     public Register() {
     }
 
-    public Register(String email, Boolean accountLocked, Boolean credentialsExpired, Boolean accountExpired, Boolean accountEnabled, Teams team, Roles role) {
+    public Register(String email, Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean accountNonExpired, Boolean accountEnabled, Teams team, Roles role) {
         this.email = email;
-        this.accountLocked = accountLocked;
-        this.credentialsExpired = credentialsExpired;
-        this.accountExpired = accountExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.accountNonExpired = accountNonExpired;
         this.accountEnabled = accountEnabled;
         this.team = team;
         this.role = role;
     }
 
-    public Register(String email, Boolean accountLocked, Boolean credentialsExpired, Boolean accountExpired, Boolean accountEnabled, Roles role) {
-        this.email = email;
-        this.accountLocked = accountLocked;
-        this.credentialsExpired = credentialsExpired;
-        this.accountExpired = accountExpired;
-        this.accountEnabled = accountEnabled;
-        this.role = role;
-    }
-
-    public Register(Long id, String email, Boolean accountLocked, Boolean credentialsExpired, Boolean accountExpired, Boolean accountEnabled, Teams team, Roles role) {
+    public Register(Long id, String email, Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean accountNonExpired, Boolean accountEnabled, Teams team, Roles role) {
         this.id = id;
         this.email = email;
-        this.accountLocked = accountLocked;
-        this.credentialsExpired = credentialsExpired;
-        this.accountExpired = accountExpired;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.accountNonExpired = accountNonExpired;
         this.accountEnabled = accountEnabled;
         this.team = team;
         this.role = role;
     }
 
+
+    public Register(String email, Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean accountNonExpired, Boolean accountEnabled) {
+        this.email = email;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.accountNonExpired = accountNonExpired;
+        this.accountEnabled = accountEnabled;
+    }
+
+    public Register(String email, Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean accountNonExpired, Boolean accountEnabled, Roles role) {
+        this.email = email;
+        this.accountNonLocked = accountNonLocked;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.accountNonExpired = accountNonExpired;
+        this.accountEnabled = accountEnabled;
+        this.role = role;
+    }
     public Long getId() {
         return id;
     }
@@ -67,28 +75,28 @@ public class Register {
         this.email = email;
     }
 
-    public Boolean getAccountLocked() {
-        return accountLocked;
+    public Boolean getAccountNonLocked() {
+        return accountNonLocked;
     }
 
-    public void setAccountLocked(Boolean accountLocked) {
-        this.accountLocked = accountLocked;
+    public void setAccountNonLocked(Boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
     }
 
-    public Boolean getCredentialsExpired() {
-        return credentialsExpired;
+    public Boolean getCredentialsNonExpired() {
+        return credentialsNonExpired;
     }
 
-    public void setCredentialsExpired(Boolean credentialsExpired) {
-        this.credentialsExpired = credentialsExpired;
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
     }
 
-    public Boolean getAccountExpired() {
-        return accountExpired;
+    public Boolean getAccountNonExpired() {
+        return accountNonExpired;
     }
 
-    public void setAccountExpired(Boolean accountExpired) {
-        this.accountExpired = accountExpired;
+    public void setAccountNonExpired(Boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
     }
 
     public Boolean getAccountEnabled() {
@@ -114,5 +122,4 @@ public class Register {
     public void setRole(Roles role) {
         this.role = role;
     }
-
 }
