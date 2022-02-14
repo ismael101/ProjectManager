@@ -9,11 +9,16 @@ public class Projects {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
+    @Column(nullable = false)
     private Boolean complete;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @Column(nullable = false)
     private Teams team;
+    @Column(nullable = false)
     private LocalDateTime createdAt;
+    @Column(nullable = false)
     private Date updatedAt;
 
     public Projects() {

@@ -1,6 +1,6 @@
 package com.ismael.projects.projectmanagement.security;
 
-public class JwtProperties {
+public class JWTproperties {
     public static final String SECRET = System.getenv("SECRET");
     public static final int EXPIRATION_TIME = 864_000_000; // 10 days
     public static final String TOKEN_PREFIX = "Bearer ";

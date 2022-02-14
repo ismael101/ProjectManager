@@ -2,6 +2,7 @@ package com.ismael.projects.projectmanagement.controller;
 
 import com.ismael.projects.projectmanagement.requests.LoginRequest;
 import com.ismael.projects.projectmanagement.requests.SignupRequest;
+import com.ismael.projects.projectmanagement.requests.VerificationRequest;
 import com.ismael.projects.projectmanagement.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,12 @@ public class AuthController {
     public ResponseEntity signup(@RequestBody SignupRequest signupRequest){
         ResponseEntity response = this.authenticationService.signup(signupRequest);
         return response;
+    }
+
+    @PostMapping(path = "/verfiy")
+    public ResponseEntity verfiy(@RequestBody VerificationRequest verificationRequest){
+
+        return null;
     }
 
 }

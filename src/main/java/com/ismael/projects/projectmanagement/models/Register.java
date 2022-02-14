@@ -8,14 +8,20 @@ public class Register {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private Boolean accountNonLocked;
+    @Column(nullable = false)
     private Boolean credentialsNonExpired;
+    @Column(nullable = false)
     private Boolean accountNonExpired;
+    @Column(nullable = false)
     private Boolean accountEnabled;
     @ManyToOne
     private Teams team;
     @ManyToOne
+    @Column(nullable = false)
     private Roles role;
 
     public Register() {

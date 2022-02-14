@@ -17,18 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class JwtTokenVerifier extends OncePerRequestFilter {
+public class JWTverification extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String header = request.getHeader(JwtProperties.TOKEN_PREFIX);
-        if(header == null || !header.startsWith(JwtProperties.TOKEN_PREFIX)){
+        String header = request.getHeader(JWTproperties.TOKEN_PREFIX);
+        if(header == null || !header.startsWith(JWTproperties.TOKEN_PREFIX)){
             chain.doFilter(request, response);
             return;
         }
-        String token = header.replace(JwtProperties.TOKEN_PREFIX, "");
+        String token = header.replace(JWTproperties.TOKEN_PREFIX, "");
         try{
-            Algorithm algorithm = Algorithm.HMAC256(JwtProperties.SECRET.getBytes());
+            Algorithm algorithm = Algorithm.HMAC256(JWTproperties.SECRET.getBytes());
             JWTVerifier verifier = JWT.require(algorithm)
                     .build();
             DecodedJWT jwt = verifier.verify(token);

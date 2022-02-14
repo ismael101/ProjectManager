@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 // add jwt filters (1. authentication, 2. authorization)
                 //.addFilter(new JwtAuthentication(authenticationManager()))
-                .addFilterAfter(new JwtTokenVerifier(), JwtAuthentication.class)
+                .addFilterAfter(new JWTverification(), JwtAuthentication.class)
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                 .antMatchers("/api/register/*").hasRole("ADMIN")

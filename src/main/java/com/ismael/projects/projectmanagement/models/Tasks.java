@@ -1,8 +1,9 @@
 package com.ismael.projects.projectmanagement.models;
 
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 
 @Entity
@@ -10,17 +11,22 @@ public class Tasks {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private Boolean complete;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @Column(nullable = false)
     private Projects project;
+    @Column(nullable = false)
     private LocalDateTime createdAt;
-    private Date updatedAt;
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 
     public Tasks() {
     }
 
-    public Tasks(Long id, String name, Boolean complete, Projects project, LocalDateTime createdAt, Date updatedAt) {
+    public Tasks(Long id, String name, Boolean complete, Projects project, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.complete = complete;
@@ -69,11 +75,11 @@ public class Tasks {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

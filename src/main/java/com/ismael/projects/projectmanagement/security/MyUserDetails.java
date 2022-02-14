@@ -21,13 +21,6 @@ public class MyUserDetails implements UserDetails {
         List<GrantedAuthority> authorities = new ArrayList<>();
         GrantedAuthority role = new SimpleGrantedAuthority("ROLE_" + this.user.getRegister().getRole().getName());
         authorities.add(role);
-        /*
-        this.user.getPermissions().forEach(p -> {
-            GrantedAuthority permissions = new SimpleGrantedAuthority(p);
-            authorities.add(permissions);
-        });
-
-         */
         return authorities;
     }
 
